@@ -209,6 +209,39 @@ func (controller *SiteController) HackIllinois(ctx *context.Context) error {
 	return ctx.Render(http.StatusOK, "event", params)
 }
 
+func (controller *SiteController) HackThis(ctx *context.Context) error {
+	eventUri, err := config.GetConfigValue("HACKTHIS_URI")
+	if err != nil {
+		return ctx.RenderError(
+			http.StatusBadRequest,
+			"Failed Getting Event Data",
+			"could not get event data uri",
+			err,
+		)
+	}
+
+	event := model.Event{}
+	err = controller.svc.Store.ParseInto(eventUri, &event)
+	if err != nil {
+		return ctx.RenderError(
+			http.StatusBadRequest,
+			"Failed Getting Event Data",
+			"could not parse event data",
+			err,
+		)
+	}
+
+	params := struct {
+		Authenticated bool
+		Event         model.Event
+	}{
+		Authenticated: ctx.LoggedIn,
+		Event:         event,
+	}
+
+	return ctx.Render(http.StatusOK, "event", params)
+}
+
 func (controller *SiteController) Sponsors(ctx *context.Context) error {
 	sponsorsUri, err := config.GetConfigValue("SPONSORS_URI")
 	if err != nil {
