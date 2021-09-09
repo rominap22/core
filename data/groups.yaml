@@ -143,6 +143,15 @@ sigs:
         meetingLocation: https://discord.gg/PmaXeHPaFs
     website: https://www.quiuc.org
     email: av16@illinois.edu
+  - name: SIGCloud
+    description: Special Interest Group for Cloud
+    chairs: Romina Parimi
+    meetings:
+      - topic: General Meeting
+        meetingTime: 'Tuesday 5:30 PM - 6:30 PM'
+        meetingLocation: Siebel 1111
+    discord: https://discord.gg/qqT3kQSeZB
+    email: rparimi2@illinois.edu
   - name: SIGMobile
     description: Special Interest Group for Mobile Development
     chairs: Matt Geimer, Rahul Shamkuwar
